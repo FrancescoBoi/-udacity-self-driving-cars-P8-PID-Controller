@@ -106,6 +106,9 @@ After the first state represented by \cd+initialising+ has determined the the fi
 
 At the end of each iteration, the next parameter to be updated and the corresponding update amount is obtained by using an instance variable named \cd+paramToBeUpdated+ and the methods \cd+getK+, \cd+getdK+, \cd+setK+ and \cd+setdK+ allow to get and set these values.
 
+\subsection{Automatically reset}
+The \cd+Twiddle+ class has a  \cd+uWS::WebSocket<uWS::SERVER> *ws+ variable used to reset the run. The run is reset if the speed is close to $0$ (for example when the car gets stacked) or when the \cd+current_error+ gets bigger than the \cd+best_error+ before completing all the steps.
+
 \section{Increase throttle}
 After a the Twiddle found some good values, the throttle was increased and the algorithm rerun. Locally, I have managed to run with a throttle of $0.7$.
 
