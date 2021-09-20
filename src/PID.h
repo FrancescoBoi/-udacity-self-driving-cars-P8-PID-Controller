@@ -17,7 +17,7 @@ class PID {
    * Initialize PID.
    * @param (Kp_, Ki_, Kd_) The initial PID coefficients
    */
-  void Init(double Kp_, double Ki_, double Kd_);
+  virtual void Init(double Kp_, double Kd_, double Ki_);
 
   /**
    * Update the PID error variables given cross track error.
@@ -29,9 +29,9 @@ class PID {
    * Calculate the total PID error.
    * @output The total PID error
    */
-  double TotalError();
+   virtual double TotalError();
 
- private:
+protected:
   /**
    * PID Errors
    */
@@ -41,10 +41,16 @@ class PID {
 
   /**
    * PID Coefficients
-   */ 
+   */
   double Kp;
   double Ki;
   double Kd;
+
+  /**
+   * PID counter
+   */
+  double counter;//use double to perform division
 };
+
 
 #endif  // PID_H
