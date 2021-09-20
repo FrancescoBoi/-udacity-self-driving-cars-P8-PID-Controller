@@ -105,7 +105,7 @@ void Twiddle::setdK(size_t idx, double val)
 
 void Twiddle::checkTuningCondition()
 {
-    if (this->Kp+this->Kd+this->Ki<1e-12)
+    if (this->Kp+this->Kd+this->Ki<1e-10)
     {
         this->state = tuned;
         this->Kp = this->Kp;
@@ -163,9 +163,11 @@ double Twiddle::TotalError()
                 {
                     std::cout<<"iteration: "<<this->counter<<std::endl;
                     this->best_err = this->curr_err;
+                    this->best_Kp = this->Kp;
+                    this->best_Kd = this->Kd;
+                    this->best_Ki = this->Ki;
                     setdK(paramToBeUpdated, 1.1*getdK(paramToBeUpdated));
                     this->printK();
-                    paramToBeUpdated = (paramToBeUpdated+1)%3;
                 }
                 else
                 {
